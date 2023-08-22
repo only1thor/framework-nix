@@ -17,11 +17,13 @@
      "experimental-features = nix-command flakes";
   };  
 
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
-
+  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+  networking.hostId = "476d182d";
   # Setup keyfile
   boot.initrd.secrets = {
     "/crypto_keyfile.bin" = null;
@@ -32,7 +34,7 @@
   boot.initrd.luks.devices."luks-983043a6-9eaf-404b-b709-dcdcc7efe9d1".keyFile = "/crypto_keyfile.bin";
 
   # Enable ntfs filesystem support
-  boot.supportedFilesystems = [ "ntfs" ];
+  boot.supportedFilesystems = [ "ntfs" "zfs" ];
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -46,7 +48,10 @@
 
   # Enable network manager applet
   programs.nm-applet.enable = true;
-
+  
+  # Enable android development
+  programs.adb.enable = true;
+  
   # Set your time zone.
   time.timeZone = "Europe/Oslo";
 
@@ -65,6 +70,9 @@
     LC_TIME = "nb_NO.UTF-8";
   };
 
+  # Enable docker
+  virtualisation.docker.enable = true;
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
@@ -73,6 +81,12 @@
   services.xserver.displayManager.gdm.enable = true; 
 #  services.xserver.desktopManager.lxqt.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
+
+  # enable mounting of Iphone
+  services.usbmuxd.enable = true;
+
+  # enable logitech wireless hardware with solaar
+  hardware.logitech.wireless.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
@@ -112,15 +126,26 @@
     isNormalUser = true;
     description = "tc";
     shell = pkgs.fish;
+    extraGroups = [ "networkmanager" "wheel" "docker" "adbusers"];
+    packages = with pkgs; [
+      slack
+      
+    ];
+  };
+  users.users.kvili = {
+    isNormalUser = true;
+    description = "Line";
+    shell = pkgs.fish;
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      minecraft
+      google-chrome
+      
     ];
   };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
+  services.flatpak.enable = true;
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -130,11 +155,22 @@
     git
     htop
     gnome.gnome-tweaks
+    gnomeExtensions.caffeine
+    gthumb
     lapce
     firefox
     chromium
     vscode
+    vlc
+    mpv
     signal-desktop
+    steam
+    solaar
+    cura
+    libreoffice
+    libimobiledevice # enable mount Iphone
+    ifuse # optional, to mount using 'ifuse'
+
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -162,6 +198,6 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "22.11"; # Did you read the comment?
+  system.stateVersion = "23.05"; # Did you read the comment?
 
 }
