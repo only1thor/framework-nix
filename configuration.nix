@@ -126,7 +126,7 @@
     isNormalUser = true;
     description = "tc";
     shell = pkgs.fish;
-    extraGroups = [ "networkmanager" "wheel" "docker" "adbusers"];
+    extraGroups = [ "networkmanager" "wheel" "docker" "adbusers" "uucp"];
     packages = with pkgs; [
       slack
       
@@ -136,10 +136,19 @@
     isNormalUser = true;
     description = "Line";
     shell = pkgs.fish;
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "adbusers" "uucp" ];
     packages = with pkgs; [
       google-chrome
       
+    ];
+  };
+  users.users.marscheck = {
+    isNormalUser = true;
+    description = "The Marschecks";
+    shell = pkgs.fish;
+    extraGroups = [ "networkmanager" "adbusers" "uucp" ];
+    packages = with pkgs; [
+      google-chrome
     ];
   };
 
@@ -151,16 +160,20 @@
   environment.systemPackages = with pkgs; [
     nano
     dua
+    arduino
     wget
     git
     htop
     gnome.gnome-tweaks
     gnomeExtensions.caffeine
     gthumb
+    gimp
+    inkscape
     lapce
     firefox
     chromium
     vscode
+    ffmpeg
     vlc
     mpv
     signal-desktop
@@ -170,7 +183,7 @@
     libreoffice
     libimobiledevice # enable mount Iphone
     ifuse # optional, to mount using 'ifuse'
-
+    transmission-gtk
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
