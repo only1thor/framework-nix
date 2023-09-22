@@ -85,13 +85,17 @@
   # enable mounting of Iphone
   services.usbmuxd.enable = true;
 
+  # enable firmware updates with fwupd
+  services.fwupd.enable = true;
+
   # enable logitech wireless hardware with solaar
   hardware.logitech.wireless.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
     layout = "no";
-    xkbVariant = "dvorak";
+    xkbVariant = ",dvorak";
+    xkbOptions = "grp:win_space_toggle";
   };
 
   # Configure console keymap
@@ -126,7 +130,7 @@
     isNormalUser = true;
     description = "tc";
     shell = pkgs.fish;
-    extraGroups = [ "networkmanager" "wheel" "docker" "adbusers" "uucp"];
+    extraGroups = [ "networkmanager" "wheel" "docker" "adbusers" "uucp" "tty" "dialout"];
     packages = with pkgs; [
       slack
       
@@ -140,15 +144,6 @@
     packages = with pkgs; [
       google-chrome
       
-    ];
-  };
-  users.users.marscheck = {
-    isNormalUser = true;
-    description = "The Marschecks";
-    shell = pkgs.fish;
-    extraGroups = [ "networkmanager" "adbusers" "uucp" ];
-    packages = with pkgs; [
-      google-chrome
     ];
   };
 
@@ -174,6 +169,7 @@
     chromium
     vscode
     ffmpeg
+    fwupd
     vlc
     mpv
     signal-desktop
