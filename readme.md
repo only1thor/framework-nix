@@ -1,5 +1,10 @@
+# Top 5 commands to stay updated
+
 [what are the top 5 commands i need for keeping my nixOS system up to date?](https://www.phind.com/search?cache=x57nb7z8ffek1hwezmfx5l0f)
+
 Answer | GPT-3.5-Turbo Model
+
+
 To keep your NixOS system up to date, you can use the following commands:
 
 1. `nix-channel --update`: This command updates the NixOS channels on your system. NixOS channels are a mechanism for distributing Nix expressions and associated binaries. By updating the channels, you ensure that your system is pulling the latest updates and package upgrades.
