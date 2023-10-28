@@ -24,3 +24,11 @@ It's important to note that these commands are just a subset of the available Ni
 sources: 
 [NixOS Manual - Upgrading NixOS](https://nixos.org/manual/nixos/stable/#sec-upgrading-nixos)
 [NixOS Anywhere - Quickstart Guide](https://github.com/nix-community/nixos-anywhere#quickstart-guide)
+
+## Personal experice:
+```bash
+sudo nix-channel --update
+sudo nixos-rebuild switch
+sudo nix-env --delete-generations 1d
+sudo nix-collect-garbage --delete-older-than 1d
+```

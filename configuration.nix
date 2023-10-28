@@ -167,11 +167,15 @@
     lapce
     firefox
     chromium
+    microsoft-edge
     vscode
     ffmpeg
     fwupd
+    usbutils
     vlc
     mpv
+    openscad
+    prusa-slicer
     signal-desktop
     steam
     solaar
@@ -180,6 +184,7 @@
     libimobiledevice # enable mount Iphone
     ifuse # optional, to mount using 'ifuse'
     transmission-gtk
+    virt-manager
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
