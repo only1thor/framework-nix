@@ -7,7 +7,7 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      <nixos-hardware/framework/12th-gen-intel>  
+      <nixos-hardware/framework/13-inch/12th-gen-intel>  
       ./hardware-configuration.nix
     ];
 
@@ -132,8 +132,7 @@
     shell = pkgs.fish;
     extraGroups = [ "networkmanager" "wheel" "docker" "adbusers" "uucp" "tty" "dialout"];
     packages = with pkgs; [
-      slack
-      
+	# add programs for user tc here
     ];
   };
   users.users.kvili = {
@@ -143,7 +142,6 @@
     extraGroups = [ "networkmanager" "wheel" "docker" "adbusers" "uucp" ];
     packages = with pkgs; [
       google-chrome
-      
     ];
   };
 
@@ -161,6 +159,7 @@
     htop
     gnome.gnome-tweaks
     gnomeExtensions.caffeine
+    gparted
     gthumb
     gimp
     inkscape
