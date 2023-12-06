@@ -149,6 +149,7 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
   services.flatpak.enable = true;
+  services.tailscale.enable = true;
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -184,6 +185,7 @@
     libimobiledevice # enable mount Iphone
     ifuse # optional, to mount using 'ifuse'
     transmission-gtk
+    tailscale
     virt-manager
   ];
 
