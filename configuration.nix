@@ -1,22 +1,23 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, lib, ... }:
-
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      <nixos-hardware/framework/13-inch/12th-gen-intel>  
-      ./hardware-configuration.nix
-    ];
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   nix = {
-   package = pkgs.nixFlakes;
-   extraOptions = lib.optionalString (config.nix.package == pkgs.nixFlakes)
-     "experimental-features = nix-command flakes";
-  };  
-
+    package = pkgs.nixFlakes;
+    extraOptions =
+      lib.optionalString (config.nix.package == pkgs.nixFlakes)
+      "experimental-features = nix-command flakes";
+  };
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -34,7 +35,7 @@
   boot.initrd.luks.devices."luks-983043a6-9eaf-404b-b709-dcdcc7efe9d1".keyFile = "/crypto_keyfile.bin";
 
   # Enable ntfs filesystem support
-  boot.supportedFilesystems = [ "ntfs" "zfs" ];
+  boot.supportedFilesystems = ["ntfs" "zfs"];
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -48,10 +49,10 @@
 
   # Enable network manager applet
   programs.nm-applet.enable = true;
-  
+
   # Enable android development
   programs.adb.enable = true;
-  
+
   # Set your time zone.
   time.timeZone = "Europe/Oslo";
 
@@ -77,9 +78,9 @@
   services.xserver.enable = true;
 
   # Enable the LXQT Desktop Environment.
-#  services.xserver.displayManager.lightdm.enable = true;
-  services.xserver.displayManager.gdm.enable = true; 
-#  services.xserver.desktopManager.lxqt.enable = true;
+  #  services.xserver.displayManager.lightdm.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
+  #  services.xserver.desktopManager.lxqt.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 
   # enable mounting of Iphone
@@ -123,7 +124,7 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
-  
+
   programs.steam.enable = true;
   programs.fish.enable = true;
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -131,16 +132,16 @@
     isNormalUser = true;
     description = "tc";
     shell = pkgs.fish;
-    extraGroups = [ "networkmanager" "wheel" "docker" "adbusers" "uucp" "tty" "dialout"];
+    extraGroups = ["networkmanager" "wheel" "docker" "adbusers" "uucp" "tty" "dialout"];
     packages = with pkgs; [
-	# add programs for user tc here
+      # add programs for user tc here
     ];
   };
   users.users.kvili = {
     isNormalUser = true;
     description = "Line";
     shell = pkgs.fish;
-    extraGroups = [ "networkmanager" "wheel" "docker" "adbusers" "uucp" ];
+    extraGroups = ["networkmanager" "wheel" "docker" "adbusers" "uucp"];
     packages = with pkgs; [
       google-chrome
     ];
@@ -215,5 +216,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
-
 }
