@@ -103,6 +103,11 @@
   # Configure console keymap
   console.keyMap = "no";
 
+  # Enable Via qmk configureator udev stuff
+  services.udev.packages = with pkgs; [
+    qmk-udev-rules # what it says on the tin
+  ];
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
@@ -186,6 +191,7 @@
     libreoffice
     libimobiledevice # enable mount Iphone
     ifuse # optional, to mount using 'ifuse'
+    qmk
     transmission-gtk
     tailscale
     virt-manager
