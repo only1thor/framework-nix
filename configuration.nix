@@ -1,28 +1,35 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, lib, ... }:
-
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      <nixos-hardware/framework/13-inch/12th-gen-intel>  
-      ./hardware-configuration.nix
-    ];
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   nix = {
-   package = pkgs.nixFlakes;
-   extraOptions = lib.optionalString (config.nix.package == pkgs.nixFlakes)
-     "experimental-features = nix-command flakes";
-  };  
-
+    package = pkgs.nixFlakes;
+    extraOptions =
+      lib.optionalString (config.nix.package == pkgs.nixFlakes)
+      "experimental-features = nix-command flakes";
+  };
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.configurationLimit = 3;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
   boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+  boot.plymouth.enable = true;
+  boot.plymouth.logo = pkgs.fetchurl {
+    url = "https://nixos.org/logo/nixos-hires.png";
+    sha256 = "5117cfea79811fdd2f605ba9063bc7f2a2e610e1a5a26b863720821f4f7b7fc7";
+  };
   networking.hostId = "476d182d";
   # Setup keyfile
   boot.initrd.secrets = {
@@ -34,9 +41,9 @@
   boot.initrd.luks.devices."luks-983043a6-9eaf-404b-b709-dcdcc7efe9d1".keyFile = "/crypto_keyfile.bin";
 
   # Enable ntfs filesystem support
-  boot.supportedFilesystems = [ "ntfs" "zfs" ];
+  boot.supportedFilesystems = ["ntfs" "zfs"];
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "framework"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -48,10 +55,10 @@
 
   # Enable network manager applet
   programs.nm-applet.enable = true;
-  
+
   # Enable android development
   programs.adb.enable = true;
-  
+
   # Set your time zone.
   time.timeZone = "Europe/Oslo";
 
@@ -77,9 +84,9 @@
   services.xserver.enable = true;
 
   # Enable the LXQT Desktop Environment.
-#  services.xserver.displayManager.lightdm.enable = true;
-  services.xserver.displayManager.gdm.enable = true; 
-#  services.xserver.desktopManager.lxqt.enable = true;
+  #  services.xserver.displayManager.lightdm.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
+  #  services.xserver.desktopManager.lxqt.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 
   # enable mounting of Iphone
@@ -100,6 +107,11 @@
 
   # Configure console keymap
   console.keyMap = "no";
+
+  # Enable Via qmk configureator udev stuff
+  services.udev.packages = with pkgs; [
+    qmk-udev-rules # what it says on the tin
+  ];
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -123,23 +135,24 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
-  
+
+  programs.steam.enable = true;
   programs.fish.enable = true;
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.tc = {
     isNormalUser = true;
     description = "tc";
     shell = pkgs.fish;
-    extraGroups = [ "networkmanager" "wheel" "docker" "adbusers" "uucp" "tty" "dialout"];
+    extraGroups = ["networkmanager" "wheel" "docker" "adbusers" "uucp" "tty" "dialout"];
     packages = with pkgs; [
-	# add programs for user tc here
+      # add programs for user tc here
     ];
   };
   users.users.kvili = {
     isNormalUser = true;
     description = "Line";
     shell = pkgs.fish;
-    extraGroups = [ "networkmanager" "wheel" "docker" "adbusers" "uucp" ];
+    extraGroups = ["networkmanager" "wheel" "docker" "adbusers" "uucp"];
     packages = with pkgs; [
       google-chrome
     ];
@@ -148,6 +161,7 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
   services.flatpak.enable = true;
+  services.tailscale.enable = true;
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -182,7 +196,9 @@
     libreoffice
     libimobiledevice # enable mount Iphone
     ifuse # optional, to mount using 'ifuse'
+    qmk
     transmission-gtk
+    tailscale
     virt-manager
   ];
 
@@ -212,5 +228,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
-
 }
