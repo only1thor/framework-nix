@@ -25,6 +25,11 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
   boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+  boot.plymouth.enable = true;
+  boot.plymouth.logo = pkgs.fetchurl {
+    url = "https://nixos.org/logo/nixos-hires.png";
+    sha256 = "5117cfea79811fdd2f605ba9063bc7f2a2e610e1a5a26b863720821f4f7b7fc7";
+  };
   networking.hostId = "476d182d";
   # Setup keyfile
   boot.initrd.secrets = {
