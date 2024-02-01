@@ -173,6 +173,7 @@
     htop
     gnome.gnome-tweaks
     gnomeExtensions.caffeine
+    pavucontrol
     gparted
     gthumb
     gimp
