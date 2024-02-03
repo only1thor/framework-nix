@@ -187,6 +187,7 @@
     ffmpeg
     fwupd
     usbutils
+    yt-dlp
     vlc
     mpv
     openscad
