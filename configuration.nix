@@ -173,6 +173,7 @@
     htop
     gnome.gnome-tweaks
     gnomeExtensions.caffeine
+    gnomeExtensions.tray-icons-reloaded
     anki
     pavucontrol
     gparted
