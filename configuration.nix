@@ -191,6 +191,7 @@
     yt-dlp
     vlc
     mpv
+    upscayl
     openscad
     prusa-slicer
     signal-desktop
