@@ -167,6 +167,7 @@
   environment.systemPackages = with pkgs; [
     nano
     dua
+    android-studio
     arduino
     wget
     git
