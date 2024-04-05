@@ -31,6 +31,10 @@
     sha256 = "5117cfea79811fdd2f605ba9063bc7f2a2e610e1a5a26b863720821f4f7b7fc7";
   };
   networking.hostId = "476d182d";
+  networking.firewall.allowedTCPPortRanges = [
+    { from = 4000; to = 4001; }
+    { from = 8000; to = 8080; }
+  ];
   # Setup keyfile
   boot.initrd.secrets = {
     "/crypto_keyfile.bin" = null;
