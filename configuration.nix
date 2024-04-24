@@ -34,6 +34,7 @@
   networking.firewall.allowedTCPPortRanges = [
     { from = 4000; to = 4001; }
     { from = 8000; to = 8080; }
+    { from = 21; to = 23; }
   ];
   # Setup keyfile
   boot.initrd.secrets = {
@@ -179,6 +180,7 @@
     gnome.gnome-tweaks
     gnomeExtensions.caffeine
     gnomeExtensions.tray-icons-reloaded
+    gnome-extensions-cli
     anki
     pavucontrol
     gparted
@@ -198,6 +200,8 @@
     mpv
     upscayl
     openscad
+    pinta
+    marp-cli
     prusa-slicer
     signal-desktop
     steam
@@ -223,7 +227,7 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+   services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
