@@ -173,6 +173,7 @@
     nano
     dua
     android-studio
+    jdk17
     arduino
     wget
     git
