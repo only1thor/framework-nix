@@ -174,8 +174,10 @@
     dua
     android-studio
     jdk17
+    python3
     arduino
     wget
+    netcat
     git
     htop
     gnome.gnome-tweaks
