@@ -167,6 +167,8 @@
     gnomeExtensions.tray-icons-reloaded
     gnome-extensions-cli
     anki
+    lunar-client
+    modrinth-app
     pavucontrol
     gparted
     gthumb
@@ -189,6 +191,7 @@
     marp-cli
     prusa-slicer
     signal-desktop
+    whatsapp-for-linux
     steam
     solaar
     cura
