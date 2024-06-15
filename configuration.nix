@@ -23,7 +23,6 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.configurationLimit = 3;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
   boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
   boot.plymouth.enable = true;
   boot.plymouth.logo = pkgs.fetchurl {
@@ -36,24 +35,15 @@
     { from = 8000; to = 8080; }
     { from = 21; to = 23; }
   ];
-  # Setup keyfile
-  boot.initrd.secrets = {
-    "/crypto_keyfile.bin" = null;
-  };
+
 
   # Enable swap on luks
-  boot.initrd.luks.devices."luks-983043a6-9eaf-404b-b709-dcdcc7efe9d1".device = "/dev/disk/by-uuid/983043a6-9eaf-404b-b709-dcdcc7efe9d1";
-  boot.initrd.luks.devices."luks-983043a6-9eaf-404b-b709-dcdcc7efe9d1".keyFile = "/crypto_keyfile.bin";
-
+  boot.initrd.luks.devices."luks-335fb536-011f-4482-9515-6def690d79f5".device = "/dev/disk/by-uuid/335fb536-011f-4482-9515-6def690d79f5";
+ 
   # Enable ntfs filesystem support
   boot.supportedFilesystems = ["ntfs" "zfs"];
 
   networking.hostName = "framework"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -88,10 +78,8 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  # Enable the LXQT Desktop Environment.
-  #  services.xserver.displayManager.lightdm.enable = true;
+  # Enable the Gnome Desktop Environment with gdm login manager.
   services.xserver.displayManager.gdm.enable = true;
-  #  services.xserver.desktopManager.lxqt.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 
   # enable mounting of Iphone
@@ -104,10 +92,10 @@
   hardware.logitech.wireless.enable = true;
 
   # Configure keymap in X11
-  services.xserver = {
+  services.xserver.xkb = {
     layout = "no";
-    xkbVariant = ",dvorak";
-    xkbOptions = "grp:win_space_toggle";
+    variant = ",dvorak";
+    options = "grp:win_space_toggle";
   };
 
   # Configure console keymap
@@ -132,14 +120,7 @@
     pulse.enable = true;
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
   };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
 
   programs.steam.enable = true;
   programs.fish.enable = true;
@@ -167,7 +148,8 @@
   nixpkgs.config.allowUnfree = true;
   services.flatpak.enable = true;
   services.tailscale.enable = true;
-  # List packages installed in system profile. To search, run:
+  # List packages installed in system profile. 
+  # To search, run eg.:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     nano
@@ -218,14 +200,6 @@
     tailscale
     virt-manager
   ];
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
 
   # List services that you want to enable:
 
