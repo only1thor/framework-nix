@@ -145,6 +145,18 @@
       };
       "org/gnome/desktop/interface" = {
         color-scheme = "prefer-dark";
+        clock-show-weekday = true;
+        show-battery-percentage = true;
+      };
+      "org/gnome/desktop/wm/preferences" = {
+        resize-with-right-button = true;
+      };
+      "org/gnome/desktop/peripherals/touchpad" = {
+        natural-scroll = false;
+        two-finger-scrolling-enabled = true;
+      };
+      "org/gnome/desktop/calendar" = {
+        show-weekdate = true;
       };
     };
     # The state version is required and should stay at the version you
