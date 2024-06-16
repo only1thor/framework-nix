@@ -139,6 +139,11 @@
     programs.fish.functions = {
       gitignore = "curl -sL https://www.gitignore.io/api/$argv";
     };
+    dconf.settings = {
+      "org/gnome/mutter" = {
+        dynamic-workspaces = true;
+      };
+    };
     # The state version is required and should stay at the version you
     # originally installed.
     home.stateVersion = "24.05";
