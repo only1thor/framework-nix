@@ -134,6 +134,16 @@
       # add programs for user tc here
     ];
   };
+  home-manager.users.tc = { pkgs, ... }: {
+    programs.fish.enable = true;
+    programs.fish.functions = {
+      gitignore = "curl -sL https://www.gitignore.io/api/$argv";
+    };
+    # The state version is required and should stay at the version you
+    # originally installed.
+    home.stateVersion = "24.05";
+  };
+
   users.users.kvili = {
     isNormalUser = true;
     description = "Line";
