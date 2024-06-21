@@ -135,9 +135,21 @@
     ];
   };
   home-manager.users.tc = { pkgs, ... }: {
-    programs.fish.enable = true;
-    programs.fish.functions = {
+    programs = {
+      fish = {
+        enable = true;
+        functions = {
       gitignore = "curl -sL https://www.gitignore.io/api/$argv";
+        };
+      chromium = {
+        enable = true;
+        extensions = [
+          "nngceckbapebfimnlniiiahkandclblb" # Bitwarden
+          "cjpalhdlnbpafiamejdnhcphjbkeiagm" # uBlock Origin
+          "mdjildafknihdffpkfmmpnpoiajfjnjd" # Consent-O-Matic
+        ];
+      };
+
     };
     dconf.settings = {
       "org/gnome/mutter" = {
@@ -217,6 +229,7 @@
     mpv
     upscayl
     openscad
+    localsend
     pinta
     marp-cli
     prusa-slicer
