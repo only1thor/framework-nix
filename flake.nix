@@ -1,14 +1,14 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
-    unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixos-hardware.url = "github:NixOS/nixos-hardware";
+    # pin to a specific commit to wait for upstream conflict with nixpkgs to be resolved
+    nixos-hardware.url = "github:NixOS/nixos-hardware/2f893e185c850bcd6dbf4fbc0c61b1b90d23ff79";
     # Add home-manager as an input
     home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs"; # Ensure we're using the same nixpkgs version
   };
 
-  outputs = { self, nixpkgs, unstable, nixos-hardware, home-manager,... }: {
+  outputs = { self, nixpkgs, nixos-hardware, home-manager,... }: {
     nixosConfigurations = {
       framework = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
