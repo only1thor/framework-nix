@@ -172,6 +172,15 @@
       "org/gnome/desktop/calendar" = {
         show-weekdate = true;
       };
+      "org/gnome/shell" = {
+        favorite-apps = [
+          "firefox.desktop"
+          "org.gnome.Nautilus.desktop"
+          "org.gnome.Console.desktop"
+          "code.desktop"
+        ];
+        enabled-extensions = ["caffeine@patapon.info"];
+      };
     };
     # The state version is required and should stay at the version you
     # originally installed.
