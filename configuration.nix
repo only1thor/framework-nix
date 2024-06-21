@@ -127,6 +127,8 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.tc = {
     isNormalUser = true;
+     # password created with `mkpasswd` command
+    initialHashedPassword = "$y$j9T$bwOQf0NEDVZw3/EWWt9JO.$Yl0FITxpciYJmS1nE6MZ8QZ39wYcDc/am2fzlUfmRZA";
     description = "tc";
     shell = pkgs.fish;
     extraGroups = ["networkmanager" "wheel" "docker" "adbusers" "uucp" "tty" "dialout"];
@@ -139,8 +141,9 @@
       fish = {
         enable = true;
         functions = {
-      gitignore = "curl -sL https://www.gitignore.io/api/$argv";
+          gitignore = "curl -sL https://www.gitignore.io/api/$argv";
         };
+      };
       chromium = {
         enable = true;
         extensions = [
@@ -149,7 +152,6 @@
           "mdjildafknihdffpkfmmpnpoiajfjnjd" # Consent-O-Matic
         ];
       };
-
     };
     dconf.settings = {
       "org/gnome/mutter" = {
