@@ -217,7 +217,7 @@
     htop
     gnome.gnome-tweaks
     gnomeExtensions.caffeine
-    gnomeExtensions.tray-icons-reloaded
+    gnomeExtensions.appindicator
     gnome-extensions-cli
     anki
     lunar-client
@@ -246,6 +246,7 @@
     prusa-slicer
     signal-desktop
     whatsapp-for-linux
+    cinny-desktop
     steam
     solaar
     cura
