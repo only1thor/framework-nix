@@ -29,6 +29,14 @@
     url = "https://nixos.org/logo/nixos-hires.png";
     sha256 = "5117cfea79811fdd2f605ba9063bc7f2a2e610e1a5a26b863720821f4f7b7fc7";
   };
+
+  # enable hybrid sleep
+  systemd.sleep.extraConfig = ''
+    allowSuspendThenHibernate=yes
+    HibernateMode=suspend-then-hibernate
+    HibernateDelaySec=90
+  '';
+
   networking.hostId = "476d182d";
   networking.firewall.allowedTCPPortRanges = [
     { from = 4000; to = 4001; }
