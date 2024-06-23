@@ -178,7 +178,8 @@
         two-finger-scrolling-enabled = true;
       };
       "org/gnome/settings-daemon/plugins/power" = {
-        sleep-inactive-ac-type="nothing";
+        ambient-enabled=false; # disable automatic screen dimming
+        sleep-inactive-ac-type="nothing"; # disable automatic sleep on AC
       };
       "org/gnome/desktop/calendar" = {
         show-weekdate = true;
