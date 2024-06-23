@@ -177,6 +177,9 @@
         natural-scroll = false;
         two-finger-scrolling-enabled = true;
       };
+      "org/gnome/settings-daemon/plugins/power" = {
+        sleep-inactive-ac-type="nothing";
+      };
       "org/gnome/desktop/calendar" = {
         show-weekdate = true;
       };
