@@ -233,7 +233,6 @@
     gnome-extensions-cli
     anki
     lunar-client
-    modrinth-app
     pavucontrol
     gparted
     gthumb
