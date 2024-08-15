@@ -227,6 +227,7 @@
     netcat
     git
     htop
+    quickemu
     gnome.gnome-tweaks
     gnomeExtensions.caffeine
     gnomeExtensions.appindicator
