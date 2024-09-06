@@ -258,7 +258,6 @@
     prusa-slicer
     signal-desktop
     whatsapp-for-linux
-    cinny-desktop
     steam
     solaar
     cura
