@@ -30,6 +30,12 @@
     sha256 = "5117cfea79811fdd2f605ba9063bc7f2a2e610e1a5a26b863720821f4f7b7fc7";
   };
 
+  # Enable TPM support (for ssh and stuff like that)
+  security.tpm2.enable = true;
+  security.tpm2.pkcs11.enable = true;  # expose /run/current-system/sw/lib/libtpm2_pkcs11.so
+  security.tpm2.tctiEnvironment.enable = true;  # TPM2TOOLS_TCTI and TPM2_PKCS11_TCTI env variables
+  # users.users.YOUR_USER.extraGroups = [ "tss" ];  # tss group has access to TPM devices
+
   # enable hybrid sleep
   systemd.sleep.extraConfig = ''
     allowSuspendThenHibernate=yes
@@ -139,7 +145,7 @@
     initialHashedPassword = "$y$j9T$bwOQf0NEDVZw3/EWWt9JO.$Yl0FITxpciYJmS1nE6MZ8QZ39wYcDc/am2fzlUfmRZA";
     description = "tc";
     shell = pkgs.fish;
-    extraGroups = ["networkmanager" "wheel" "docker" "adbusers" "uucp" "tty" "dialout"];
+    extraGroups = ["networkmanager" "wheel" "docker" "adbusers" "uucp" "tty" "dialout" "tss"];
     packages = with pkgs; [
       # add programs for user tc here
     ];
