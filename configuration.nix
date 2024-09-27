@@ -265,7 +265,7 @@
     libimobiledevice # enable mount Iphone
     ifuse # optional, to mount using 'ifuse'
     qmk
-    transmission-gtk
+    transmission_4-gtk
     tailscale
     virt-manager
   ];
