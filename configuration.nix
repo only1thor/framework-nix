@@ -161,6 +161,11 @@
         ];
       };
     };
+    gtk = {
+      enable = true;
+      theme.name = "Adwaita-dark";
+      theme.package = pkgs.gnome.gnome-themes-extra;
+    };
     dconf.settings = {
       "org/gnome/mutter" = {
         dynamic-workspaces = true;
@@ -232,6 +237,7 @@
     htop
     quickemu
     gnome.gnome-tweaks
+    gnome.gnome-themes-extra
     gnomeExtensions.caffeine
     gnomeExtensions.appindicator
     gnome-extensions-cli
