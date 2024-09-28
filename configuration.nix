@@ -232,6 +232,7 @@
     gnomeExtensions.caffeine
     gnomeExtensions.appindicator
     gnome-extensions-cli
+    gnomeExtensions.user-themes
     anki
     lunar-client
     pavucontrol
