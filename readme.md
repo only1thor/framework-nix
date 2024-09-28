@@ -40,3 +40,8 @@ dconf dump / > before.txt
 dconf dump / > after.txt
 # diff files and add to "dconf.settings" in home manager config.
 ```
+Or alternatively:
+```bash
+dconf watch /
+```
+and wait for changes to be displayed.
