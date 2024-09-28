@@ -21,7 +21,7 @@ Remember to run these commands with appropriate privileges (e.g., using `sudo`) 
 
 It's important to note that these commands are just a subset of the available NixOS maintenance commands. You can explore the NixOS manual and documentation for more advanced commands and options.
 
-sources: 
+sources:
 [NixOS Manual - Upgrading NixOS](https://nixos.org/manual/nixos/stable/#sec-upgrading-nixos)
 [NixOS Anywhere - Quickstart Guide](https://github.com/nix-community/nixos-anywhere#quickstart-guide)
 
@@ -31,4 +31,12 @@ sudo nix-channel --update
 sudo nixos-rebuild switch
 sudo nix-env --delete-generations 1d
 sudo nix-collect-garbage --delete-older-than 1d
+```
+
+### Finding gnome settings to define in home manager:
+```bash
+dconf dump / > before.txt
+# change setting in UI
+dconf dump / > after.txt
+# diff files and add to "dconf.settings" in home manager config.
 ```
