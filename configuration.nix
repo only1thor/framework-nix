@@ -47,7 +47,7 @@
 
   # Enable swap on luks
   boot.initrd.luks.devices."luks-335fb536-011f-4482-9515-6def690d79f5".device = "/dev/disk/by-uuid/335fb536-011f-4482-9515-6def690d79f5";
- 
+
   # Enable ntfs filesystem support
   boot.supportedFilesystems = ["ntfs" "zfs"];
 
@@ -191,7 +191,10 @@
           "org.gnome.Console.desktop"
           "code.desktop"
         ];
-        enabled-extensions = ["caffeine@patapon.info"];
+        enabled-extensions = [
+          "caffeine@patapon.info"
+          "user-theme@gnome-shell-extensions.gcampax.github.com"
+        ];
       };
     };
     # The state version is required and should stay at the version you
@@ -213,7 +216,7 @@
   nixpkgs.config.allowUnfree = true;
   services.flatpak.enable = true;
   services.tailscale.enable = true;
-  # List packages installed in system profile. 
+  # List packages installed in system profile.
   # To search, run eg.:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
