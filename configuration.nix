@@ -199,6 +199,7 @@
         enabled-extensions = [
           "caffeine@patapon.info"
           "user-theme@gnome-shell-extensions.gcampax.github.com"
+          "Battery-Health-Charging@maniacx.github.com"
         ];
       };
     };
@@ -206,6 +207,22 @@
     # originally installed.
     home.stateVersion = "24.05";
   };
+
+  # Polkit stuff to enable setting battery threshholds via Battery-Health-Charging gnome extention
+  # (allows using pkexec to modify /sys/class/power_supply/BAT1/charge_control_end_threshold without asking for auth)
+  security.polkit.enable = true;
+  security.polkit.debug = true;
+  security.polkit.extraConfig = ''
+    polkit.addRule(function(action, subject) {
+      polkit.log("user " +  subject.user + " is attempting action " + action.id + " from PID " + subject.pid);
+      if (action.id === "org.freedesktop.policykit.exec" &&
+          action.lookup("program") === "/usr/local/bin/batteryhealthchargingctl-cristi"
+      )
+      {
+        return polkit.Result.YES;
+      }
+    })
+  '';
 
   users.users.kvili = {
     isNormalUser = true;
@@ -240,8 +257,9 @@
     gnome.gnome-themes-extra
     gnomeExtensions.caffeine
     gnomeExtensions.appindicator
-    gnome-extensions-cli
     gnomeExtensions.user-themes
+    gnomeExtensions.battery-health-charging
+    gnome-extensions-cli
     anki
     lunar-client
     pavucontrol

@@ -10,8 +10,8 @@
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+  boot.kernelModules = [ "kvm-intel" "cros_ec" "cros_ec_lpcs" ];
+  boot.extraModulePackages = [ pkgs.linuxPackages.framework-laptop-kmod ];
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/dc0ea2a9-2452-4f6a-929e-659b1014d004";
@@ -41,10 +41,10 @@
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   hardware.opengl = {
-  enable = true;
-  extraPackages = with pkgs; [
-    intel-media-driver
-    intel-ocl
-  ];
-};
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-media-driver
+      intel-ocl
+    ];
+  };
 }
