@@ -285,6 +285,7 @@
     marp-cli
     prusa-slicer
     signal-desktop
+    obsidian
     whatsapp-for-linux
     steam
     solaar
