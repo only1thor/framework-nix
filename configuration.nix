@@ -247,6 +247,7 @@
     android-studio
     jdk17
     python3
+    racket
     arduino
     wget
     netcat
