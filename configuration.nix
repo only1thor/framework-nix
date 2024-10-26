@@ -14,9 +14,11 @@
 
   nix = {
     package = pkgs.nixFlakes;
-    extraOptions =
-      lib.optionalString (config.nix.package == pkgs.nixFlakes)
-      "experimental-features = nix-command flakes";
+    extraOptions = ''
+        ${lib.optionalString (config.nix.package == pkgs.nixFlakes) "experimental-features = nix-command flakes"}
+        extra-substituters = https://devenv.cachix.org;
+        extra-trusted-public-keys = devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=;
+    '';
   };
 
   # Bootloader.
@@ -254,6 +256,7 @@
     git
     htop
     quickemu
+    devenv
     gnome.gnome-tweaks
     gnome.gnome-themes-extra
     gnomeExtensions.caffeine
