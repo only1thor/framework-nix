@@ -1,0 +1,29 @@
+From fb96108bf26b6507c2380b2b83e73d037c4ab41c Mon Sep 17 00:00:00 2001
+From: Sefa Eyeoglu <contact@scrumplex.net>
+Date: Sun, 27 Oct 2024 16:12:16 +0100
+Subject: [PATCH] drm/edid: add non-desktop quirk to XReal Air/Air 2 Pro
+
+Signed-off-by: Sefa Eyeoglu <contact@scrumplex.net>
+---
+ drivers/gpu/drm/drm_edid.c | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
+index ee3fab115c4b..3909c555168d 100644
+--- a/drivers/gpu/drm/drm_edid.c
++++ b/drivers/gpu/drm/drm_edid.c
+@@ -207,6 +207,11 @@ static const struct edid_quirk {
+ 	EDID_QUIRK('V', 'L', 'V', 0x91be, EDID_QUIRK_NON_DESKTOP),
+ 	EDID_QUIRK('V', 'L', 'V', 0x91bf, EDID_QUIRK_NON_DESKTOP),
+
++	/* XReal Air */
++	EDID_QUIRK('M', 'R', 'G', 0x3132, EDID_QUIRK_NON_DESKTOP),
++	/* XReal Air 2 Pro */
++	EDID_QUIRK('M', 'R', 'G', 0x3135, EDID_QUIRK_NON_DESKTOP),
++
+ 	/* HTC Vive and Vive Pro VR Headsets */
+ 	EDID_QUIRK('H', 'V', 'R', 0xaa01, EDID_QUIRK_NON_DESKTOP),
+ 	EDID_QUIRK('H', 'V', 'R', 0xaa02, EDID_QUIRK_NON_DESKTOP),
+--
+2.46.1
+

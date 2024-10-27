@@ -16,8 +16,6 @@
     package = pkgs.nixFlakes;
     extraOptions = ''
         ${lib.optionalString (config.nix.package == pkgs.nixFlakes) "experimental-features = nix-command flakes"}
-        extra-substituters = https://devenv.cachix.org;
-        extra-trusted-public-keys = devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=;
     '';
   };
 
@@ -32,12 +30,20 @@
     sha256 = "5117cfea79811fdd2f605ba9063bc7f2a2e610e1a5a26b863720821f4f7b7fc7";
   };
 
+  boot.kernelPatches = [ {
+    name = "xreal-patch";
+    patch = ./0001-drm-edid-add-non-desktop-quirk-to-XReal-Air-Air-2-Pr.patch;
+  } ];
+
   # enable hybrid sleep
   systemd.sleep.extraConfig = ''
     allowSuspendThenHibernate=yes
     HibernateMode=suspend-then-hibernate
     HibernateDelaySec=90
   '';
+
+  services.monado.enable = true;
+  services.monado.defaultRuntime = true;
 
   networking.hostId = "476d182d";
   networking.firewall.allowedTCPPortRanges = [
