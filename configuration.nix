@@ -259,6 +259,7 @@
     devenv
     gnome.gnome-tweaks
     gnome.gnome-themes-extra
+    gnome.gnome-boxes
     gnomeExtensions.caffeine
     gnomeExtensions.appindicator
     gnomeExtensions.user-themes
