@@ -132,6 +132,7 @@
     #jack.enable = true;
   };
 
+  hardware.xone.enable = true; # support for the xbox controller USB dongle
   programs.steam.enable = true;
   programs.fish.enable = true;
   # Define a user account. Don't forget to set a password with ‘passwd’.
