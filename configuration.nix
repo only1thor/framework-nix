@@ -43,7 +43,6 @@
   networking.firewall.allowedTCPPortRanges = [
     { from = 4000; to = 4001; }
     { from = 8000; to = 8080; }
-    { from = 21; to = 23; }
   ];
 
 
@@ -306,9 +305,6 @@
   ];
 
   # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-   services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
