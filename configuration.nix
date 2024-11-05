@@ -40,6 +40,9 @@
   '';
 
   networking.hostId = "476d182d";
+  networking.firewall.allowedTCPPorts = [
+    53317 # local-send file transfer app
+  ];
   networking.firewall.allowedTCPPortRanges = [
     { from = 4000; to = 4001; }
     { from = 8000; to = 8080; }
