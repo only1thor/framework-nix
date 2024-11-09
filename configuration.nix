@@ -136,7 +136,12 @@
 
   hardware.xone.enable = true; # support for the xbox controller USB dongle
   programs.steam.enable = true;
-  programs.fish.enable = true;
+  programs.fish = { 
+    enable = true;
+    interactiveShellInit = ''
+      set -g fish_greeting "🐟"
+    '';
+  };
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.tc = {
     isNormalUser = true;
