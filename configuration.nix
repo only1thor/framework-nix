@@ -296,6 +296,7 @@
     localsend
     pinta
     marp-cli
+    drawio
     prusa-slicer
     signal-desktop
     obsidian
