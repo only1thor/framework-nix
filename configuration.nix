@@ -66,6 +66,9 @@
   # Enable android development
   programs.adb.enable = true;
 
+  # Enable direnv for using the VS code extention
+  programs.direnv.enable = true;
+
   # Set your time zone.
   time.timeZone = "Europe/Oslo";
 
