@@ -13,9 +13,9 @@
   ];
 
   nix = {
-    package = pkgs.nixFlakes;
+    package = pkgs.nixVersions.stable;
     extraOptions = ''
-        ${lib.optionalString (config.nix.package == pkgs.nixFlakes) "experimental-features = nix-command flakes"}
+        ${lib.optionalString (config.nix.package == pkgs.nixVersions.stable) "experimental-features = nix-command flakes"}
         extra-substituters = https://devenv.cachix.org
         extra-trusted-public-keys = devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=
     '';
@@ -125,7 +125,6 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -177,7 +176,7 @@
     gtk = {
       enable = true;
       theme.name = "Adwaita-dark";
-      theme.package = pkgs.gnome.gnome-themes-extra;
+      theme.package = pkgs.gnome-themes-extra;
     };
     dconf.settings = {
       "org/gnome/mutter" = {
@@ -257,25 +256,18 @@
   environment.systemPackages = with pkgs; [
     nano
     dua
-    android-studio
-    jdk17
-    python3
-    racket
-    arduino
     wget
     netcat
     git
     htop
     quickemu
     devenv
-    gnome.gnome-tweaks
-    gnome.gnome-themes-extra
-    gnome.gnome-boxes
+    gnome-tweaks
+    gnome-themes-extra
     gnomeExtensions.caffeine
     gnomeExtensions.appindicator
     gnomeExtensions.user-themes
     gnomeExtensions.battery-health-charging
-    gnome-extensions-cli
     anki
     lunar-client
     pavucontrol
@@ -283,10 +275,8 @@
     gthumb
     gimp
     inkscape
-    lapce
     firefox
     chromium
-    microsoft-edge
     vscode
     ffmpeg
     fwupd
@@ -298,15 +288,11 @@
     openscad
     localsend
     pinta
-    marp-cli
-    drawio
     prusa-slicer
     signal-desktop
     obsidian
-    whatsapp-for-linux
     steam
     solaar
-    cura
     libreoffice
     libimobiledevice # enable mount Iphone
     ifuse # optional, to mount using 'ifuse'
