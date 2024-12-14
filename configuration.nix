@@ -155,7 +155,24 @@
       # add programs for user tc here
     ];
   };
+  
+  programs.firefox.preferences = {
+    # don't scroll forever
+    "apz.fling_friction" = "0.005";
+    "apz.fling_min_velocity_threshold" = "1.5";
+    "apz.gtk.pangesture.delta_mode" = 2;
+    "apz.gtk.pangesture.pixel_delta_mode_multiplier" = "20.0";
+  };
+  
+  catppuccin = {
+    enable = true;
+    flavor = "mocha";
+  };
   home-manager.users.tc = { pkgs, ... }: {
+    catppuccin = {
+      enable = true;
+      flavor = "mocha";
+    };
     programs = {
       fish = {
         enable = true;
@@ -253,7 +270,7 @@
   # To search, run eg.:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    nano
+    micro
     dua
     wget
     netcat
@@ -277,6 +294,7 @@
     firefox
     chromium
     vscode
+    zed-editor
     ffmpeg
     fwupd
     usbutils
