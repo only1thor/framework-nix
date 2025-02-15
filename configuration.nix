@@ -160,16 +160,8 @@
     "apz.gtk.pangesture.delta_mode" = 2;
     "apz.gtk.pangesture.pixel_delta_mode_multiplier" = "20.0";
   };
-  
-  catppuccin = {
-    enable = true;
-    flavor = "mocha";
-  };
+
   home-manager.users.tc = { pkgs, ... }: {
-    catppuccin = {
-      enable = true;
-      flavor = "mocha";
-    };
     programs = {
       fish = {
         enable = true;
