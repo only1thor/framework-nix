@@ -42,10 +42,6 @@
   networking.firewall.allowedTCPPorts = [
     53317 # local-send file transfer app
   ];
-  networking.firewall.allowedTCPPortRanges = [
-    { from = 4000; to = 4001; }
-    { from = 8000; to = 8080; }
-  ];
 
 
   # Enable swap on luks
@@ -119,6 +115,7 @@
   services.udev.packages = with pkgs; [
     qmk-udev-rules # what it says on the tin
   ];
+  hardware.keyboard.zsa.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -277,6 +274,7 @@
     git
     htop
     quickemu
+    distrobox
     devenv
     gnome-tweaks
     gnome-themes-extra
