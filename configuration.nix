@@ -171,6 +171,8 @@
       };
       chromium = {
         enable = true;
+        # enable pinch to zoom in chromium
+        commandLineArgs = ["--enable-features=UseOzonePlatform --ozone-platform=wayland"];
         extensions = [
           "nngceckbapebfimnlniiiahkandclblb" # Bitwarden
           "cjpalhdlnbpafiamejdnhcphjbkeiagm" # uBlock Origin
