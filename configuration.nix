@@ -275,6 +275,7 @@
     gnomeExtensions.caffeine
     gnomeExtensions.appindicator
     gnomeExtensions.user-themes
+    gnomeExtensions.tiling-assistant
     gnomeExtensions.battery-health-charging
     anki
     lunar-client
