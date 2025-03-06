@@ -286,6 +286,7 @@
     inkscape
     firefox
     chromium
+    xfce.mousepad
     vscode
     zed-editor
     ffmpeg
