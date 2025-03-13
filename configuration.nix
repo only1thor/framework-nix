@@ -170,6 +170,7 @@
         settings = {
           keyboard.bindings = [
             { key = "F11"; action = "ToggleFullscreen"; }
+            { key = "N"; mods = "Control|Shift"; action = "CreateNewWindow"; }
           ];
         };
       };
