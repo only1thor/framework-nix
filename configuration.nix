@@ -180,6 +180,12 @@
           gitignore = "curl -sL https://www.gitignore.io/api/$argv";
         };
       };
+      micro = {
+        enable = true;
+        settings = {
+          reload = "auto";
+        };
+      };
       chromium = {
         enable = true;
         # enable pinch to zoom in chromium
