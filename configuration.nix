@@ -267,6 +267,8 @@
     netcat
     git
     htop
+    tmux
+    ghostty
     quickemu
     distrobox
     devenv
