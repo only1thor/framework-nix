@@ -140,6 +140,8 @@
       set -g fish_greeting "🐟"
     '';
   };
+
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.tc = {
     isNormalUser = true;
@@ -163,6 +165,14 @@
 
   home-manager.users.tc = { pkgs, ... }: {
     programs = {
+      alacritty = {
+        enable = true;
+        settings = {
+          keyboard.bindings = [
+            { key = "F11"; action = "ToggleFullscreen"; }
+          ];
+        };
+      };
       fish = {
         enable = true;
         functions = {
@@ -268,7 +278,6 @@
     git
     htop
     tmux
-    alacritty
     quickemu
     distrobox
     devenv
