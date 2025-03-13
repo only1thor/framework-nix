@@ -268,7 +268,7 @@
     git
     htop
     tmux
-    ghostty
+    alacritty
     quickemu
     distrobox
     devenv
