@@ -16,8 +16,6 @@
     package = pkgs.nixVersions.stable;
     extraOptions = ''
         ${lib.optionalString (config.nix.package == pkgs.nixVersions.stable) "experimental-features = nix-command flakes"}
-        extra-substituters = https://devenv.cachix.org
-        extra-trusted-public-keys = devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=
     '';
   };
 
@@ -60,9 +58,6 @@
 
   # Enable android development
   programs.adb.enable = true;
-
-  # Enable direnv for using the VS code extention
-  programs.direnv.enable = true;
 
   # Set your time zone.
   time.timeZone = "Europe/Oslo";
