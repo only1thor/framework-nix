@@ -268,7 +268,10 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
   services.flatpak.enable = true;
-  services.tailscale.enable = true;
+  services.tailscale = {
+    enable = true;
+    useRoutingFeatures = "client";
+  };
   # List packages installed in system profile.
   # To search, run eg.:
   # $ nix search wget
