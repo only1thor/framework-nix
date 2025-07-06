@@ -79,6 +79,7 @@
 
   # Enable docker
   virtualisation.docker.enable = true;
+  virtualisation.libvirtd.enable = true;
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -144,7 +145,7 @@
     initialHashedPassword = "$y$j9T$bwOQf0NEDVZw3/EWWt9JO.$Yl0FITxpciYJmS1nE6MZ8QZ39wYcDc/am2fzlUfmRZA";
     description = "tc";
     shell = pkgs.fish;
-    extraGroups = ["networkmanager" "wheel" "docker" "adbusers" "uucp" "tty" "dialout"];
+    extraGroups = ["networkmanager" "wheel" "docker" "adbusers" "uucp" "tty" "dialout" "libvirtd"];
     packages = with pkgs; [
       # add programs for user tc here
     ];
@@ -286,6 +287,7 @@
     quickemu
     distrobox
     devenv
+    gnome-boxes
     gnome-tweaks
     gnome-themes-extra
     gnomeExtensions.caffeine
