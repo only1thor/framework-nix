@@ -36,6 +36,11 @@
     HibernateDelaySec=90
   '';
 
+  # Add Brother printer drivers
+  services.printing.drivers = [
+    pkgs.brlaser
+  ];
+
   networking.hostId = "476d182d";
   networking.firewall.allowedTCPPorts = [
     53317 # local-send file transfer app
