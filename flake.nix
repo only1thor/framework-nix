@@ -1,6 +1,7 @@
 {
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    #nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs.url = "git+https://github.com/NixOS/nixpkgs?shallow=1&ref=nixos-25.05";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     # Add home-manager as an input
     home-manager.url = "github:nix-community/home-manager/release-25.05";
