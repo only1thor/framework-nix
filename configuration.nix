@@ -155,13 +155,60 @@
       # add programs for user tc here
     ];
   };
-  
+
+  # Enable Firefox program module to apply policies
+  programs.firefox.enable = true;
+ 
+  # Lock preferences in place.
+  programs.firefox.preferencesStatus = "locked";
+
   programs.firefox.preferences = {
     # don't scroll forever
     "apz.fling_friction" = "0.005";
     "apz.fling_min_velocity_threshold" = "1.5";
     "apz.gtk.pangesture.delta_mode" = 2;
     "apz.gtk.pangesture.pixel_delta_mode_multiplier" = "20.0";
+  };
+
+  programs.firefox.policies = {
+    Homepage.StartPage = "previous-session";
+    SearchEngines.Default = "DuckDuckGo";
+    HardwareAcceleration = true;
+    ExtensionSettings = {
+      "es-es@dictionaries.addons.mozilla.org" = {
+        install_url = "https://addons.mozilla.org/firefox/downloads/latest/diccionario-de-espa%C3%B1ol-espa%C3%B1a/latest.xpi";
+        installation_mode = "force_installed";
+      };
+      "nb-NO@dictionaries.addons.mozilla.org" = {
+        install_url = "https://addons.mozilla.org/firefox/downloads/latest/norsk-bokm%C3%A5l-ordliste/latest.xpi";
+        installation_mode = "force_installed";
+      };
+      "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
+        install_url = "https://addons.mozilla.org/firefox/downloads/latest/bitwarden-password-manager/latest.xpi";
+        installation_mode = "force_installed";
+      };
+      "uBlock0@raymondhill.net" = {
+        install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
+        installation_mode = "force_installed";
+      };
+      "jid1-MnnxcxisBPnSXQ@jetpack" = {
+        install_url = "https://addons.mozilla.org/firefox/downloads/latest/privacy-badger17/latest.xpi";
+        installation_mode = "force_installed";
+      };
+      "gdpr@cavi.au.dk" = {
+        install_url = "https://addons.mozilla.org/firefox/downloads/latest/consent-o-matic/latest.xpi";
+        installation_mode = "force_installed";
+      };
+      "@contain-facebook" = {
+        install_url = "https://addons.mozilla.org/firefox/downloads/latest/facebook-container/latest.xpi";
+        installation_mode = "force_installed";
+      };
+      "" = {
+        install_url = "";
+        installation_mode = "force_installed";
+      };
+    };
+    RequestedLocales = [ "nb-NO" "en-US" "es-ES" ];
   };
 
   home-manager.users.tc = { pkgs, ... }: {
@@ -287,7 +334,9 @@
     wget
     netcat
     git
+    jq
     htop
+    btop
     tmux
     quickemu
     distrobox
