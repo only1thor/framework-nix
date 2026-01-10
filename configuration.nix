@@ -20,13 +20,17 @@
   };
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.systemd-boot.configurationLimit = 3;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.plymouth.enable = true;
-  boot.plymouth.logo = pkgs.fetchurl {
-    url = "https://nixos.org/logo/nixos-hires.png";
-    sha256 = "5117cfea79811fdd2f605ba9063bc7f2a2e610e1a5a26b863720821f4f7b7fc7";
+  boot = {
+    loader ={
+      systemd-boot.enable = true;
+      systemd-boot.configurationLimit = 3;
+      efi.canTouchEfiVariables = true;
+    };
+    plymouth.enable = true;
+    plymouth.logo = pkgs.fetchurl {
+      url = "https://nixos.org/logo/nixos-hires.png";
+      sha256 = "5117cfea79811fdd2f605ba9063bc7f2a2e610e1a5a26b863720821f4f7b7fc7";
+    };
   };
 
   # enable hybrid sleep
@@ -43,7 +47,7 @@
 
   networking.hostId = "476d182d";
   networking.firewall.allowedTCPPorts = [
-    53317 # local-send file transfer app
+#    53317 # local-send file transfer app
   ];
 
 
@@ -323,7 +327,6 @@
   services.flatpak.enable = true;
   services.tailscale = {
     enable = true;
-    useRoutingFeatures = "client";
   };
   # List packages installed in system profile.
   # To search, run eg.:
@@ -373,6 +376,7 @@
     pinta
     prusa-slicer
     signal-desktop
+    prismlauncher
     obsidian
     steam
     solaar
