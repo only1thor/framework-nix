@@ -3,11 +3,11 @@
     nixpkgs.url = "git+https://github.com/NixOS/nixpkgs?shallow=1&ref=nixos-25.11";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     # Add home-manager as an input
-    home-manager.url = "github:nix-community/home-manager/release-25.11";
+    home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs"; # Ensure we're using the same nixpkgs version
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, home-manager,... }:{
+  outputs = { self, nixpkgs, nixos-hardware, home-manager, ... }:{
     nixosConfigurations = {
       framework = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";

@@ -65,9 +65,6 @@
   # Enable network manager applet
   programs.nm-applet.enable = true;
 
-  # Enable android development
-  programs.adb.enable = true;
-
   # Set your time zone.
   time.timeZone = "Europe/Oslo";
 
@@ -154,7 +151,7 @@
     initialHashedPassword = "$y$j9T$bwOQf0NEDVZw3/EWWt9JO.$Yl0FITxpciYJmS1nE6MZ8QZ39wYcDc/am2fzlUfmRZA";
     description = "tc";
     shell = pkgs.fish;
-    extraGroups = ["networkmanager" "wheel" "docker" "adbusers" "uucp" "tty" "dialout" "libvirtd"];
+    extraGroups = ["networkmanager" "wheel" "docker" "uucp" "tty" "dialout" "libvirtd"];
     packages = with pkgs; [
       # add programs for user tc here
     ];
@@ -162,7 +159,7 @@
 
   # Enable Firefox program module to apply policies
   programs.firefox.enable = true;
- 
+
   # Lock preferences in place.
   programs.firefox.preferencesStatus = "locked";
 
@@ -316,7 +313,7 @@
     isNormalUser = true;
     description = "Line";
     shell = pkgs.fish;
-    extraGroups = ["networkmanager" "wheel" "docker" "adbusers" "uucp"];
+    extraGroups = ["networkmanager" "wheel" "docker" "uucp"];
     packages = with pkgs; [
       google-chrome
     ];
@@ -324,7 +321,9 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
   services.flatpak.enable = true;
+
   services.tailscale = {
     enable = true;
   };
